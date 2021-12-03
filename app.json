@@ -1,0 +1,43 @@
+{
+  "pages":[
+    "pages/personal/personal",
+    "pages/login/login",
+    "pages/index/index",
+    "pages/video/video"
+  ],
+  "window":{
+    "navigationBarBackgroundColor": "#d43c33",
+    "navigationBarTitleText": "晓宇云音乐",
+    "navigationBarTextStyle":"white",
+    "enablePullDownRefresh": false,
+    "backgroundTextStyle":"dark"
+  },
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#333",
+    "selectedColor": "#d43c33",
+    "backgroundColor": "",
+    "position": "bottom",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "主页",
+        "iconPath": "/static/icons/home.png",
+        "selectedIconPath": "/static/icons/home-active.png"
+      },
+      {
+        "pagePath": "pages/video/video",
+        "text": "视频",
+        "iconPath": "/static/icons/video.png",
+        "selectedIconPath": "/static/icons/video-active.png"
+      },
+      {
+        "pagePath": "pages/personal/personal",
+        "text": "我的",
+        "iconPath": "/static/icons/my.png",
+        "selectedIconPath": "/static/icons/my-active.png"
+      }
+    ]
+  }
+}

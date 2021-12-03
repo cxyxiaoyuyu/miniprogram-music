@@ -1,0 +1,23 @@
+@import '/static/iconfont/iconfont.wxss';
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10rpx 0; 
+}
+.header .title {
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.header .more{
+  border: 1rpx solid #5f4b4b;
+  padding: 6rpx 18rpx 6rpx 20rpx;
+  font-size: 22rpx;
+  border-radius: 30rpx;
+  color: #5f4b4b;
+  display: flex;
+  align-items: center;
+}
+.more .iconfont {
+  font-size: 24rpx;
+}

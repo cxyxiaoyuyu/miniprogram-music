@@ -1,0 +1,5 @@
+<view class="header">
+  <text>{{title}}</text>
+  <text class="more">更多<text class="iconfont icon-right"></text>
+  </text>
+</view>
