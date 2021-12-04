@@ -195,7 +195,7 @@
 .personalContent .recentPlay image {
   width: 160rpx;
   height: 160rpx;
-  margin-left: 20rpx;
+  margin-left: 10rpx;
   border-radius: 20rpx;
 }
 
@@ -222,7 +222,7 @@
   height: 200rpx;
 }
 .recentItem {
-  margin: 0 20rpx;
+  margin: 0 10rpx;
 }
 .recentItem image{
   width: 200rpx;

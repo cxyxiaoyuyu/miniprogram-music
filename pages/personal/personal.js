@@ -1,3 +1,4 @@
+import request from '../../utils/request.js'
 // pages/personal/personal.js
 let startY = 0 // 手指起始坐标
 let moveY = 0 // 手指移动的坐标
@@ -10,7 +11,8 @@ Page({
   data: {
     coverTransform: 'translateY(0)',
     coverTransition: '',
-    userInfo: ''
+    userInfo: '',
+    recentPlayList: []
   },
   toLogin() {
     wx.navigateTo({
@@ -53,12 +55,28 @@ Page({
    */
   onLoad: function (options) {
     // 读取用户信息
-    const userInfo = wx.getStorageSync('userInfo');
+    const userInfo = JSON.parse(wx.getStorageSync('userInfo'));
+    console.log(userInfo)
     if(userInfo){
       this.setData({
-        userInfo: JSON.parse(userInfo)
-      }) 
+        userInfo
+      })
+      
+      // 获取用户播放记录
+      this.getUserRecentPlay(userInfo.userId)
     }
+  },
+  async getUserRecentPlay(userId){
+    const recentPlayData = await request('/user/record',{uid:userId,type: 1})
+    console.log(recentPlayData,'xx')
+    const recentPlayList = recentPlayData.weekData.slice(0,10).map((item,index)=>{
+      item.id = index   // 手动添加id wx:key
+      return item
+    })
+    this.setData({
+      recentPlayList
+    })
+    console.log(this.data.recentPlayList)
   },
 
   /**
