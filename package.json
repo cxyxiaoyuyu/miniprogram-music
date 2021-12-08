@@ -1,0 +1,23 @@
+{
+  "name": "miniprogram-3",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cxyxiaoyuyu/miniprogram-music.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cxyxiaoyuyu/miniprogram-music/issues"
+  },
+  "homepage": "https://github.com/cxyxiaoyuyu/miniprogram-music#readme",
+  "dependencies": {
+    "moment": "^2.29.1",
+    "pubsub-js": "^1.9.4"
+  }
+}

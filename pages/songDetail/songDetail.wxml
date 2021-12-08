@@ -2,8 +2,7 @@
 <view class="songDetailContainer">
 
   <view class="wrap" bindtap="toggleLyric">
-    {{isPlay}}
-    <view class="song" wx:if="{{!lyricVisible}}">
+    <view class="song {{lyricVisible && 'hide'}}" >
       <!-- 底座 -->
       <view class="circle"></view>
       <!-- 摇杆 -->
@@ -17,8 +16,11 @@
     </view>
 
     <!-- 歌词 -->
-    <view class="scrollLrc" wx:else>
-      <text>{{currentLyric}}</text>
+    <view class="scrollLrc" hidden="{{!lyricVisible}}">
+      <view class="lyric">
+        <text>{{lyric}}</text>
+      </view>
+        
     </view>
   </view>
 

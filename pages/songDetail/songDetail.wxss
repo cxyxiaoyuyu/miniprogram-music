@@ -3,9 +3,11 @@
   height: 100%;
   background: #000;
   padding-top: 20rpx;
+  display: flex;
+  justify-content: center;
 }
 .wrap {
-  height: calc(100vh - 400rpx);
+  height: calc(100vh - 350rpx);
   align-items: center;
 }
 .wrap .song {
@@ -13,6 +15,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+}
+.wrap .song.hide {
+  /* display: none; */
+  /* 使旋转动画不停止 */
+  opacity: 0;
+  height: 0;
 }
 /* 底座 */
 .circle {
@@ -79,12 +88,14 @@
 }
 /* 歌词显示 */
 .scrollLrc {
-  position: absolute;
-  bottom: 280rpx;
-  width: 640rpx;
-  height: 120rpx;
-  line-height: 120rpx;
-  text-align: center;
+  text-align: center; 
+  color: #fff;
+  overflow: scroll;
+  height: 100%;
+  font-size: 28rpx;
+}
+.scrollLrc .lyric {
+  transform: translateY(150rpx);
 }
 /* 底部控制器 */
 .musicControl {
@@ -110,17 +121,19 @@
 .progressControl {
   position: absolute;
   bottom: 200rpx;
-  width: 640rpx;
   height: 80rpx;
   line-height: 80rpx;
   display: flex;
+  color: #fff;
+  align-items: center;
+  font-size: 26rpx;
 }
 .barControl {
   position: relative;
   width: 450rpx;
   height: 4rpx;
-  background: rgba(0,0,0,0.4);
-  margin: auto;
+  background: #7b7474;
+  margin: 0 20rpx;
 }
 .audio-currentTime-Bar {
   position: absolute;
@@ -128,7 +141,7 @@
   left: 0;
   z-index: 1;
   height: 4rpx;
-  background: red;
+  background: #fff;
 }
 /* 小圆球 */
 .audio-circle {

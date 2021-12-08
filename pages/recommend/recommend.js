@@ -1,5 +1,6 @@
 // pages/recommend/recommend.js
 import request from '../../utils/request'
+import  PubSub  from 'pubsub-js';
 Page({
 
   /**
@@ -41,25 +42,34 @@ Page({
     })
 
     this.getRecommendList();
+
+    PubSub.subscribe('switchMusic', (msg,type) => {
+      let { recommendList,index } = this.data
+      if(type === 'pre'){
+        (index === 0) && (index = recommendList.length)
+        index -= 1
+      }else{
+        (index === recommendList.length) && (index = 0)
+        index += 1
+      }
+      this.setData({index})
+      PubSub.publish('musicId',recommendList[index].id)
+    })
   },
   async getRecommendList() {
-    let recommendListData = await request('/recommend/songs',{cookie: wx.getStorageSync('cookie') });
-    console.log(recommendListData,'data')
+    let recommendListData = await request('/recommend/songs', { cookie: wx.getStorageSync('cookie') });
     this.setData({
       recommendList: recommendListData.data.dailySongs
     })
-    console.log(this.data.recommendList)
   },
   //跳转至songDetail页面
-  toSongDetail(event){
-    let {song,index} = event.currentTarget.dataset;
+  toSongDetail(event) {
+    let { song, index } = event.currentTarget.dataset;
 
-    this.setData({
-      index: index
-    })
+    this.setData({ index })
     //路由跳转传参：query参数
     wx.navigateTo({
-      url: '/pages/songDetail/songDetail?song=' + song.id
+      url: '/pages/songDetail/songDetail?musicId=' + song.id
     })
   },
 
