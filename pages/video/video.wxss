@@ -1,1 +1,104 @@
-/* pages/video/video.wxss */
+/* 搜索区域 */
+.videoContainer .header{
+  display: flex;
+  align-items: center;
+  padding: 10rpx;
+}
+.videoContainer .header image {
+  width: 60rpx;
+  height: 60rpx;
+}
+.videoContainer .header .search {
+  flex: 1;
+  margin: 0 20rpx;
+  font-size: 26rpx;
+  text-align: center;
+}
+
+/* 导航区域 */
+.navScroll {
+  display: flex;
+  height: 60rpx;
+  box-sizing: border-box;
+}
+.navScroll .navItem {
+  padding: 0 30rpx;
+  font-size: 28rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+.navScroll .navItem.active {
+  border-bottom: 2rpx solid #d43c33;
+}
+
+/* 视频列表区域   */
+.videoList {
+  margin-top: 20rpx;
+  height: 100vh;
+}
+.videoItem {
+  padding: 0 3%;
+  margin-bottom: 20rpx;
+}
+.videoList video {
+  width: 100%;
+  height: 370rpx;
+  border-radius: 10rpx;
+}
+.videoItem .common {
+  width: 100%;  
+  height: 370rpx;
+  border-radius: 10rpx;
+}
+
+.videoItem .content {
+  font-size: 26rpx;
+  height:60rpx;
+  line-height: 60rpx;
+  max-width: 500rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* footer */
+.footer .avatar {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.footer  .nickName {
+  font-size: 26rpx;
+  vertical-align: middle;
+  margin-left: 20rpx;
+}
+
+.footer .comments_praised {
+  float: right;
+}
+
+.comments_praised .btn {
+  display: inline;
+  padding: 0;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.comments_praised .btn:after {
+  border: none;
+}
+
+.comments_praised .item {
+  margin-left: 50rpx;
+  position: relative;
+}
+
+.comments_praised .item .count {
+  position: absolute;
+  top: -20rpx;
+  font-size: 20rpx;
+}

@@ -55,7 +55,7 @@ Page({
    */
   onLoad: function (options) {
     // 读取用户信息
-    const userInfo = JSON.parse(wx.getStorageSync('userInfo'));
+    const userInfo = JSON.parse(wx.getStorageSync('userInfo') || null);
     console.log(userInfo)
     if(userInfo){
       this.setData({

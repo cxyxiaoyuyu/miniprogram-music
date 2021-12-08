@@ -6,8 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    phone: '',
-    password: ''
+    phone: '13501600459',
+    password: 'cxy12345'
   },
   handleInput(event) {
     const type = event.currentTarget.id
@@ -46,14 +46,17 @@ Page({
       return;
     }
 
-    const result = await request('/login/cellphone', { phone, password })
+    const result = await request('/login/cellphone', { phone, password },true)
     if (result.code === 200) {
       wx.showToast({
         title: '登录成功',
         icon: 'none'
       })
+      console.log(result,'result')
       // 存储个人信息
       wx.setStorageSync('userInfo', JSON.stringify(result.profile));
+      // 存储cookie
+      wx.setStorageSync('cookie',result.cookie)
         
       // 跳转至个人中心页面
       wx.reLaunch({

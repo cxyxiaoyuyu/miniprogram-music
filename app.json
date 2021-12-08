@@ -1,17 +1,20 @@
 {
   "pages":[
-    "pages/personal/personal",
-    "pages/login/login",
+    "pages/recommend/recommend",
     "pages/index/index",
-    "pages/video/video"
+    "pages/songDetail/songDetail",
+    "pages/video/video",
+    "pages/login/login",
+    "pages/personal/personal"
   ],
   "window":{
     "navigationBarBackgroundColor": "#d43c33",
     "navigationBarTitleText": "晓宇云音乐",
     "navigationBarTextStyle":"white",
-    "enablePullDownRefresh": false,
+    "enablePullDownRefresh": true,
     "backgroundTextStyle":"dark"
   },
+  "requiredBackgroundModes": ["audio", "location"],
   "sitemapLocation": "sitemap.json",
   "tabBar": {
     "color": "#333",

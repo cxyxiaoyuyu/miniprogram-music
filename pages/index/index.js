@@ -47,6 +47,12 @@ Page({
     })
     console.log(this.data.topList)
   },
+  toPage(event){
+    const page = event.currentTarget.dataset.page
+    wx.navigateTo({
+      url: '/pages/recommend/recommend'
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

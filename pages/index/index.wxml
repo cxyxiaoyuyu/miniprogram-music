@@ -7,7 +7,7 @@
   </swiper>
   <!-- 导航 -->
   <view class="navContainer">
-    <view class="navItem">
+    <view class="navItem" data-page="recommend" bindtap="toPage">
       <text class="iconfont {{'icon-rili'+today}}"></text>
       <text>每日推荐</text>
     </view>
