@@ -26,6 +26,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+    console.log(this.data.lyricTransform,'xxx')
     this.setData({
       musicId: options.musicId
     })
@@ -43,6 +45,7 @@ Page({
 
     // 当前没有音乐在播放 或者后台播放的音乐不是当前音乐 
     if (!appInstance.globalData.isMusicPlay || appInstance.globalData.musicId !== this.data.musicId) {
+      this.backAudioManager.pause() // 关闭当前音乐 
       // 1 获取音乐信息
       this.getMusicInfo().then((res) => {
         this.playMusic()
