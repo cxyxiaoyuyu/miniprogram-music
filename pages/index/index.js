@@ -22,7 +22,6 @@ Page({
         let { code } = res
         //  2 将code发送给服务器
         let result  = await request('/getOpenId',{code})
-        console.log('result',result)
       }
     })
   },
@@ -55,7 +54,6 @@ Page({
     this.setData({
       topList
     })
-    console.log(topList)
     // 获取前四个榜单下的前三首数据
     for (let i = 0; i < topList.length; i++) {
       let songList = await request(`/playlist/detail?id=${topList[i].id}`)
@@ -71,7 +69,6 @@ Page({
     // 胶囊按钮高度 和 高
     const { top, height } = wx.getMenuButtonBoundingClientRect()
 
-    console.log(statusBarHeight,top, height,platform)
 
     // 判断胶囊按钮信息是否成功获取
     if (top && top !== 0 && height && height !== 0) {
@@ -91,19 +88,17 @@ Page({
       searchKeyWords: keyWordsData.data.showKeyword 
     })
   },
-  goSearch(){
-  console.log('search')
-    wx.navigateTo({
-      url: '/pages/search/search'
-    })
-  },
   toPage(event) {
     const page = event.currentTarget.dataset.page
     wx.navigateTo({
-      url: '/pages/recommend/recommend'
+      url: `/pages/${page}/${page}`
     })
   },
-
+  toPlayList(event){
+    wx.navigateTo({
+      url: '/pages/playlist/playlist?id=' + event.currentTarget.id
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

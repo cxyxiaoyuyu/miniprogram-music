@@ -19,7 +19,7 @@
     <view class="scrollLrc" hidden="{{!lyricVisible}}">
       <view class="lyricWrap" style="transform: {{'translateY('+lyricTransform+'rpx)'}}">
         <view class="lyric" wx:for="{{lyric}}" wx:key="time">
-          <text class="{{activeTime === item.time && 'active'}}">{{item.text}}</text>
+          <text class="{{activeIndex === index && 'active'}}">{{item.text}}</text>
         </view>
       </view>
         

@@ -1,7 +1,7 @@
 <view>
   <!-- 搜索 -->
   <view class="search" style="height: {{navigationBarHeight + 'px'}};padding-top:{{statusBarHeight+'px'}}">
-    <view class="input" bindtap="goSearch">
+    <view class="input" data-page="search" bindtap="toPage">
       <text class="iconfont icon-search"></text>
       <text>{{searchKeyWords}}</text>
     </view>
@@ -40,7 +40,7 @@
     <NavHeader title="推荐歌曲" content="为您精心推荐"></NavHeader>
     <scroll-view class="recommentScroll" enable-flex scroll-x>
       <view class="scroll-item" wx:for="{{recommendList}}" wx:key="id">
-        <image src="{{item.picUrl}}" />
+        <image src="{{item.picUrl}}" id="{{item.id}}" bindtap="toPlayList"/>
         <text>{{item.name}}</text>
       </view>
     </scroll-view>
@@ -58,9 +58,7 @@
         </view>
       </view>
       <view class="right">
-        <text wx:for="{{item.tracks}}" wx:for-item="song" wx:key="id">
-          {{index+1}}. {{song.name}}
-        </text>
+        <text wx:for="{{item.tracks}}" wx:for-item="song" wx:key="id">{{index+1}}.{{song.name}}</text>
       </view>
     </view>
   </view>

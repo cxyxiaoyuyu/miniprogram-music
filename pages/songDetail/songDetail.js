@@ -14,15 +14,13 @@ Page({
     song: '',
     musicLink: '',
     lyric: '',
-    activeTime: '',
+    activeIndex: 0,
     musicId: '',
     currentTime: '00.00',
     durationTime: '05:03',
     currentWidth: 0,
     lyricTransform: 150,
   },
-
-
 
   /**
    * 生命周期函数--监听页面加载
@@ -63,6 +61,10 @@ Page({
       //获取歌曲后播放音乐
       this.getMusicInfo().then(res => {
         this.playMusic()
+        this.getLyric()
+        this.setData({
+          lyricTransform: 150   // 歌词位置复原
+        })
       })
     })
   },
@@ -185,10 +187,19 @@ Page({
   getCurrentLyric() {
     let lyricTime = Math.ceil(this.backAudioManager.currentTime);
     const lyric = this.data.lyric
-    for (let i = 0; i < lyric.length; i++) {
-      if (lyricTime >= lyric[i].time && lyricTime <= lyric[i + 1].time) {
+    // 从当前高亮歌词开始遍历
+    for (let i = this.data.activeIndex; i < lyric.length; i++) {
+      console.log(lyric[i])
+      if(i === lyric.length - 1){ // 如果找到最后一个了 那说明当前就是最后一行歌词
         this.setData({
-          activeTime: lyric[i].time
+          activeIndex: i,
+          lyricTransform: 150 - (i - 4) * 60
+        })
+        return 
+      }
+      if(lyricTime >= lyric[i].time && lyricTime <= lyric[i + 1].time) {
+        this.setData({
+          activeIndex: i
         })
         // 当播放到第六行歌词时 开始歌词滚动
         // 一行歌词的高度是30px => 60rpx

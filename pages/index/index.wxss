@@ -157,5 +157,5 @@
   color: #000;
 }
 .topItem .right text{
-  padding: 5rpx 0;
+  padding: 8rpx 0;
 }
