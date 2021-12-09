@@ -6,6 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    statusBarHeight: 20,
+    navigationBarHeight: 60,
+    searchKeyWords: '搜索搜索',
     today: '1',
     bannerList: [],
     recommendList: [],
@@ -17,6 +20,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options) {
+
+    this.getNavigationBarHeight()
+    this.getSearchKeywords()
 
     // 获取banner
     const bannerData = await request("/banner", { type: 2 })
@@ -32,22 +38,53 @@ Page({
 
     // 获取排行榜
     const topListData = await request('/toplist');
-    const topList = topListData.list.slice(0,4)
+    const topList = topListData.list.slice(0, 4)
     this.setData({
       topList
     })
     console.log(topList)
     // 获取前四个榜单下的前三首数据
-    for(let i=0;i<topList.length;i++){
+    for (let i = 0; i < topList.length; i++) {
       let songList = await request(`/playlist/detail?id=${topList[i].id}`)
-      topList[i].tracks = songList.playlist.tracks.slice(0,3)
+      topList[i].tracks = songList.playlist.tracks.slice(0, 3)
     }
     this.setData({
       topList
     })
-    console.log(this.data.topList)
   },
-  toPage(event){
+  getNavigationBarHeight(){
+    // 状态栏高度
+    const { statusBarHeight, platform } = wx.getSystemInfoSync()
+    // 胶囊按钮高度 和 高
+    const { top, height } = wx.getMenuButtonBoundingClientRect()
+
+    console.log(statusBarHeight,top, height,platform)
+
+    // 判断胶囊按钮信息是否成功获取
+    if (top && top !== 0 && height && height !== 0) {
+
+      const navigationBarHeight = (top - statusBarHeight) * 3 + height + statusBarHeight
+      this.setData({ statusBarHeight,navigationBarHeight })
+
+    } else {
+      this.setData({
+        navigationBarHeight: platform === 'android' ? 68 : 60
+      })
+    }
+  },
+  async getSearchKeywords(){
+    const keyWordsData = await request('/search/default')
+    this.setData({
+      searchKeyWords: keyWordsData.data.showKeyword 
+    })
+  },
+  goSearch(){
+  console.log('search')
+    wx.navigateTo({
+      url: '/pages/search/search'
+    })
+  },
+  toPage(event) {
     const page = event.currentTarget.dataset.page
     wx.navigateTo({
       url: '/pages/recommend/recommend'

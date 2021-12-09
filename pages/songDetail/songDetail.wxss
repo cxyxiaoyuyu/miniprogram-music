@@ -96,6 +96,7 @@
 }
 .scrollLrc .lyricWrap {
   color: #9c9797;
+  transition: transform 1s linear;
 }
 .lyricWrap .lyric {
   padding: 10rpx;

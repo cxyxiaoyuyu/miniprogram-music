@@ -1,3 +1,26 @@
+/* 搜索 */
+.search {
+  background:#d43c33;
+  box-sizing: border-box;
+} 
+.search .input {
+  color: #f7f3f3;
+  border: 1px solid #f7f3f3;
+  width: 50%;
+  margin-left: 40rpx;
+  margin-top: 16rpx;
+  font-size: 24rpx;
+  height: 50rpx;
+  border-radius: 50rpx;
+  padding-left: 20rpx;
+  display: flex;
+  align-items: center;
+}
+.search .input .iconfont {
+  padding-right: 30rpx;
+}
+
+/* 轮播图 */
 .banner image{
   width: 100%;
   height: calc(750rpx * 420 / 1080);

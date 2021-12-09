@@ -19,7 +19,7 @@ Page({
     currentTime: '00.00',
     durationTime: '05:03',
     currentWidth: 0,
-    lyricTransform: 150
+    lyricTransform: 150,
   },
 
 
@@ -196,7 +196,6 @@ Page({
           this.setData({
             lyricTransform: 150 - (i - 4) * 60
           })
-          console.log(this.data.lyricTransform,i)
         }
         break
       }

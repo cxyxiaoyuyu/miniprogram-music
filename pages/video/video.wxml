@@ -1,10 +1,4 @@
 <view class="videoContainer">
-  <!-- 搜索区域 -->
-  <view class="header">
-    <image src="/static/images/video/video.jpg" />
-    <view class="search">搜索商品</view>
-    <image class="" src="/static/images/logo.png" />
-  </view>
   <!-- 导航区域 -->
   <scroll-view class="navScroll" scroll-x enable-flex scroll-into-view="{{'scroll'+activeNav}}" scroll-with-animation>
     <view wx:for="{{videoGroupList}}" wx:key="id" id="{{'scroll'+item.id}}" class="navItem {{activeNav === item.id ? 'active' : ''}}" bindtap="changeNav" data-id="{{item.id}}">
