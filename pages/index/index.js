@@ -15,11 +15,24 @@ Page({
     topList: [],
 
   },
+  getOpenId(){
+    // 1 获取登录code
+    wx.login({
+      async success(res){
+        let { code } = res
+        //  2 将code发送给服务器
+        let result  = await request('/getOpenId',{code})
+        console.log('result',result)
+      }
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options) {
+    // 获取用户唯一标识
+    this.getOpenId()
 
     this.getNavigationBarHeight()
     this.getSearchKeywords()
