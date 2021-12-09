@@ -63,7 +63,8 @@ Page({
         this.playMusic()
         this.getLyric()
         this.setData({
-          lyricTransform: 150   // 歌词位置复原
+          lyricTransform: 150,   // 歌词位置复原
+          activeIndex: 0
         })
       })
     })
@@ -189,7 +190,6 @@ Page({
     const lyric = this.data.lyric
     // 从当前高亮歌词开始遍历
     for (let i = this.data.activeIndex; i < lyric.length; i++) {
-      console.log(lyric[i])
       if(i === lyric.length - 1){ // 如果找到最后一个了 那说明当前就是最后一行歌词
         this.setData({
           activeIndex: i,
