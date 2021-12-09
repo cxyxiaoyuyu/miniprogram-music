@@ -89,13 +89,19 @@
 /* 歌词显示 */
 .scrollLrc {
   text-align: center; 
-  color: #fff;
   overflow: scroll;
   height: 100%;
   font-size: 28rpx;
+  margin-top: 40rpx;
 }
-.scrollLrc .lyric {
-  transform: translateY(150rpx);
+.scrollLrc .lyricWrap {
+  color: #9c9797;
+}
+.lyricWrap .lyric {
+  padding: 10rpx;
+}
+.lyricWrap .lyric .active{
+  color: #fff;
 }
 /* 底部控制器 */
 .musicControl {

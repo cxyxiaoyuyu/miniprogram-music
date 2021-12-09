@@ -10,14 +10,16 @@ Page({
    */
   data: {
     isPlay: true,  // 进来就播放
-    lyricVisible: false,
+    lyricVisible: true,
     song: '',
     musicLink: '',
     lyric: '',
-    musicId: '1334270281',
+    activeTime: '',
+    musicId: '',
     currentTime: '00.00',
     durationTime: '05:03',
-    currentWidth: 0
+    currentWidth: 0,
+    lyricTransform: 150
   },
 
 
@@ -26,9 +28,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // this.setData({
-    //   musicId: options.musicId
-    // })
+    this.setData({
+      musicId: options.musicId
+    })
 
     // 1 初始化歌曲信息
     this.initMusic()
@@ -47,7 +49,7 @@ Page({
       this.getMusicInfo().then((res) => {
         this.playMusic()
       })
-    }else{
+    } else {
       this.getMusicInfo()
     }
 
@@ -57,10 +59,10 @@ Page({
   subscribeSwitch() {
     //订阅来自recommendSong页面
     PubSub.subscribe('musicId', (msg, musicId) => {
-      this.setData({musicId})
+      this.setData({ musicId })
       //获取歌曲后播放音乐
       this.getMusicInfo().then(res => {
-        this.playMusic() 
+        this.playMusic()
       })
     })
   },
@@ -76,8 +78,8 @@ Page({
       appInstance.globalData.musicId = this.data.musicId
     })
     // 音乐自然播放结束 自动切换到下一首音乐
-    this.backAudioManager.onEnded(()=>{
-      PubSub.publish('switchMusic','next');
+    this.backAudioManager.onEnded(() => {
+      PubSub.publish('switchMusic', 'next');
       this.setData({
         currentWidth: 0,
         currentTime: '00:00',
@@ -86,10 +88,11 @@ Page({
       })
     })
     // 监听音乐实时播放的进度
-    this.backAudioManager.onTimeUpdate(()=>{
+    this.backAudioManager.onTimeUpdate(() => {
       const currentTime = moment(this.backAudioManager.currentTime * 1000).format('mm:ss')
       const currentWidth = 450 * (this.backAudioManager.currentTime / this.backAudioManager.duration)
-      this.setData({ currentTime,currentWidth })
+      this.setData({ currentTime, currentWidth })
+      this.getCurrentLyric()
     })
   },
   changePlayState(isPlay) {
@@ -115,8 +118,8 @@ Page({
     // 获取音乐链接
     let musicLinkData = await request('/song/url', { id: this.data.musicId })
     const musicLink = musicLinkData.data[0].url
- 
-    this.setData({song,durationTime,musicLink})
+
+    this.setData({ song, durationTime, musicLink })
 
     return song
   },
@@ -135,12 +138,12 @@ Page({
   },
   // 播放音乐
   playMusic() {
-    this.setData({isPlay: true})
+    this.setData({ isPlay: true })
     this.backAudioManager.src = this.data.musicLink
     this.backAudioManager.title = this.data.song.name
   },
-  stopMusic(){
-    this.setData({isPlay: false})
+  stopMusic() {
+    this.setData({ isPlay: false })
     this.backAudioManager.pause()
   },
 
@@ -159,38 +162,45 @@ Page({
   //获取歌词
   async getLyric() {
     let lyricData = await request("/lyric", { id: this.data.musicId });
-    let lyric = lyricData.lrc.lyric
-    this.setData({
-      lyric
-    })
-    console.log(lyric)
+    this.formatLyric(lyricData.lrc.lyric)
   },
   //传入初始歌词文本text
   formatLyric(text) {
-    let result = [];
-    let arr = text.split("\n"); //原歌词文本已经换好行了方便很多，我们直接通过换行符“\n”进行切割
-    let row = arr.length; //获取歌词行数
-    for (let i = 0; i < row; i++) {
-      let temp_row = arr[i]; //现在每一行格式大概就是这样"[00:04.302][02:10.00]hello world";
-      let temp_arr = temp_row.split("]");//我们可以通过“]”对时间和文本进行分离
-      let text = temp_arr.pop(); //把歌词文本从数组中剔除出来，获取到歌词文本了！
-      //再对剩下的歌词时间进行处理
-      temp_arr.forEach(element => {
-        let obj = {};
-        let time_arr = element.substr(1, element.length - 1).split(":");//先把多余的“[”去掉，再分离出分、秒
-        let s = parseInt(time_arr[0]) * 60 + Math.ceil(time_arr[1]); //把时间转换成与currentTime相同的类型，方便待会实现滚动效果
-        obj.time = s;
-        obj.text = text;
-        result.push(obj); //每一行歌词对象存到组件的lyric歌词属性里
-      });
+    let lyric = []
+    let lyricArr = text.split("\n")
+    lyricArr.pop()  // 去除最后一个空行
+    for (let i = 0; i < lyricArr.length; i++) {
+      let lyricRow = lyricArr[i];
+      const match = lyricRow.match(/\[(.+)\](.+)/)
+      if (match) {
+        const [res, time_s, text] = match
+        let time_arr = time_s.substr(1, time_s.length - 1).split(":");//先把多余的“[”去掉，再分离出分、秒
+        let time = parseInt(time_arr[0]) * 60 + Math.ceil(time_arr[1]); //把时间转换成与currentTime相同的类型，方便待会实现滚动效果
+        const lyricObj = { time, text }
+        lyric.push(lyricObj)
+      }
     }
-    result.sort(this.sortRule) //由于不同时间的相同歌词我们给排到一起了，所以这里要以时间顺序重新排列一下
-    this.setData({
-      lyric: result
-    })
+    this.setData({ lyric })
   },
-  sortRule(a, b) { //设置一下排序规则
-    return a.time - b.time;
+  getCurrentLyric() {
+    let lyricTime = Math.ceil(this.backAudioManager.currentTime);
+    const lyric = this.data.lyric
+    for (let i = 0; i < lyric.length; i++) {
+      if (lyricTime >= lyric[i].time && lyricTime <= lyric[i + 1].time) {
+        this.setData({
+          activeTime: lyric[i].time
+        })
+        // 当播放到第六行歌词时 开始歌词滚动
+        // 一行歌词的高度是30px => 60rpx
+        if (i >= 4) {
+          this.setData({
+            lyricTransform: 150 - (i - 4) * 60
+          })
+          console.log(this.data.lyricTransform,i)
+        }
+        break
+      }
+    }
   },
 
   /**
