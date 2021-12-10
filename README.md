@@ -18,7 +18,7 @@
 ### 项目截图预览
 
 #### 主页
-![主页](./screen/index.png)
+![主页](./screen/index.png){:height="50%" width="50%"}
 ![排行榜](./screen/topList.png)
 
 #### 个人中心页面
