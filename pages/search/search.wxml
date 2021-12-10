@@ -4,7 +4,7 @@
     <view class="header">
       <view class="searchInput">
         <text class="iconfont icon-search"></text>
-        <input type="text" value="{{searchContent}}" placeholder="{{placeholderContent}}" placeholder-class="placeholder" bindinput="handleInputChange" />
+        <input focus="{{true}}" type="text" value="{{searchContent}}" placeholder="{{placeholderContent}}" placeholder-class="placeholder" bindinput="handleInputChange" />
         <text class="iconfont icon-clear" hidden="{{!searchContent}}" bindtap="handleClear"></text>
       </view>
     </view>
