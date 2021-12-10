@@ -10,7 +10,7 @@ Page({
    */
   data: {
     isPlay: true,  // 进来就播放
-    lyricVisible: true,
+    lyricVisible: false,
     song: '',
     musicLink: '',
     lyric: '',
@@ -27,7 +27,7 @@ Page({
    */
   onLoad: function (options) {
 
-    console.log(this.data.lyricTransform,'xxx')
+    console.log('onload')
     this.setData({
       musicId: options.musicId
     })
@@ -45,7 +45,7 @@ Page({
 
     // 当前没有音乐在播放 或者后台播放的音乐不是当前音乐 
     if (!appInstance.globalData.isMusicPlay || appInstance.globalData.musicId !== this.data.musicId) {
-      this.backAudioManager.pause() // 关闭当前音乐 
+      this.stopMusic()
       // 1 获取音乐信息
       this.getMusicInfo().then((res) => {
         this.playMusic()
@@ -86,12 +86,7 @@ Page({
     // 音乐自然播放结束 自动切换到下一首音乐
     this.backAudioManager.onEnded(() => {
       PubSub.publish('switchMusic', 'next');
-      this.setData({
-        currentWidth: 0,
-        currentTime: '00:00',
-        lyric: [],
-        lyricTime: 0,
-      })
+      this.stopMusic()
     })
     // 监听音乐实时播放的进度
     this.backAudioManager.onTimeUpdate(() => {
@@ -148,9 +143,23 @@ Page({
     this.backAudioManager.src = this.data.musicLink
     this.backAudioManager.title = this.data.song.name
   },
-  stopMusic() {
+  // 暂停音乐
+  pauseMusic() {
     this.setData({ isPlay: false })
     this.backAudioManager.pause()
+  },
+  // 停止音乐
+  stopMusic() {
+    this.backAudioManager.stop()
+    this.setData({
+      isPlay: false,
+      lyricTransform: 150,
+      activeIndex: 0,
+      currentWidth: 0,
+      currentTime: '00:00',
+      lyric: [],
+      lyricTime: 0,
+    })
   },
 
   // 切换上一首 下一首
@@ -193,14 +202,14 @@ Page({
     const lyric = this.data.lyric
     // 从当前高亮歌词开始遍历
     for (let i = this.data.activeIndex; i < lyric.length; i++) {
-      if(i === lyric.length - 1){ // 如果找到最后一个了 那说明当前就是最后一行歌词
+      if (i === lyric.length - 1) { // 如果找到最后一个了 那说明当前就是最后一行歌词
         this.setData({
           activeIndex: i,
           lyricTransform: 150 - (i - 4) * 60
         })
-        return 
+        return
       }
-      if(lyricTime >= lyric[i].time && lyricTime <= lyric[i + 1].time) {
+      if (lyricTime >= lyric[i].time && lyricTime <= lyric[i + 1].time) {
         this.setData({
           activeIndex: i
         })

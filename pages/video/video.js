@@ -36,7 +36,6 @@ Page({
     videoListData.datas.forEach(async (item, index) => {
       // item.id = index
       const result = await request('/video/url', { id: item.data.vid })
-      console.log(result, 'result')
       item.url = result.urls[0].url
       item.id = result.urls[0].id
       this.setData({
@@ -47,7 +46,6 @@ Page({
   },
 
   changeNav(event) {
-    console.log(event)
     const navId = event.currentTarget.dataset.id
     this.setData({
       activeNav: +navId,
@@ -110,7 +108,6 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    console.log('refresh')
   },
 
   /**

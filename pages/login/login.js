@@ -52,7 +52,6 @@ Page({
         title: '登录成功',
         icon: 'none'
       })
-      console.log(result,'result')
       // 存储个人信息
       wx.setStorageSync('userInfo', JSON.stringify(result.profile));
       // 存储cookie

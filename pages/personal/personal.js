@@ -56,7 +56,6 @@ Page({
   onLoad: function (options) {
     // 读取用户信息
     const userInfo = JSON.parse(wx.getStorageSync('userInfo') || null);
-    console.log(userInfo)
     if(userInfo){
       this.setData({
         userInfo
@@ -68,7 +67,6 @@ Page({
   },
   async getUserRecentPlay(userId){
     const recentPlayData = await request('/user/record',{uid:userId,type: 1})
-    console.log(recentPlayData,'xx')
     const recentPlayList = recentPlayData.weekData.slice(0,10).map((item,index)=>{
       item.id = index   // 手动添加id wx:key
       return item
@@ -76,7 +74,6 @@ Page({
     this.setData({
       recentPlayList
     })
-    console.log(this.data.recentPlayList)
   },
 
   /**

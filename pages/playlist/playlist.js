@@ -66,7 +66,6 @@ Page({
   //获取歌单所对应的歌曲
   async getPlayList() {
     let playListData = await request("/playlist/detail", { id: this.data.listId });
-    console.log(playListData, 'playlistData')
     this.setData({
       playList: playListData.playlist.tracks,
       listImg: playListData.playlist.coverImgUrl,

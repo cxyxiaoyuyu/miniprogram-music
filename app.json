@@ -13,7 +13,7 @@
     "navigationBarBackgroundColor": "#d43c33",
     "navigationBarTitleText": "心意云音乐",
     "navigationBarTextStyle":"white",
-    "enablePullDownRefresh": true,
+    "enablePullDownRefresh": false,
     "backgroundTextStyle":"dark"
   },
   "requiredBackgroundModes": ["audio", "location"],

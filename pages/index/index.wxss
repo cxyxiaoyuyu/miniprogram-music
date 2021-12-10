@@ -6,7 +6,7 @@
 .search .input {
   color: #f7f3f3;
   border: 1px solid #f7f3f3;
-  width: 50%;
+  width: 55%;
   margin-left: 40rpx;
   margin-top: 16rpx;
   font-size: 24rpx;
