@@ -132,7 +132,7 @@ Page({
   // 播放暂停
   togglePlay() {
     if (this.data.isPlay) {
-      this.stopMusic()
+      this.pauseMusic()
     } else {
       this.playMusic()
     }
