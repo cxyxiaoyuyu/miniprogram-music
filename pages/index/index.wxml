@@ -7,7 +7,7 @@
     </view>
   </view>
   <!-- 轮播图 -->
-  <swiper class="swiper" autoplay indicator-dots circular indicator-active-color="#d43c33" indicator-color="ivory">
+  <swiper style="margin-top: {{navigationBarHeight + 'px'}}" class="swiper" autoplay indicator-dots circular indicator-active-color="#d43c33" indicator-color="ivory">
     <swiper-item class="banner" wx:for="{{bannerList}}" wx:key="bannerId">
       <image src="{{item.pic}}" />
     </swiper-item>

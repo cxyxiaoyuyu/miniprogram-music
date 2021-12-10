@@ -19,6 +19,9 @@
 .searchInput .icon-search {
   padding: 0 20rpx;
 }
+.searchInput input {
+  flex: 1;
+}
 .searchInput .icon-clear {
   padding: 0 20rpx;
 }
