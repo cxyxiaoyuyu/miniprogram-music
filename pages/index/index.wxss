@@ -25,9 +25,12 @@
 }
 
 /* 轮播图 */
+.swiper {
+  height: calc(750rpx * 399 / 1026);
+}
 .banner image{
   width: 100%;
-  height: calc(750rpx * 420 / 1080);
+  height: calc(750rpx * 399 / 1026);
 }
 .navContainer {
   display: flex;
