@@ -18,30 +18,32 @@
 ### 项目截图预览
 
 #### 主页
-![主页](./screen/index.png)
-<img src="./screen/index.png" width=100px height=300px>
-![排行榜](./screen/topList.png)
+<img src="./screen/index.png" width=380px>
+<img src="./screen/topList.png" width=380px>
 
 #### 个人中心页面
-![个人中心](./screen/my.png)
+<img src="./screen/my.png" width=380px>
 
 #### 登录页面
-![登录](./screen/login.png)
+<img src="./screen/login.png" width=380px>
 
 #### 每日推荐
-![每日推荐](./screen/recommend.png)
+<img src="./screen/recommend.png" width=380px>
 
 #### 推荐歌曲
-![推荐歌曲](./screen/playlist.png)
+<img src="./screen/playlist.png" width=380px>
 
 #### 视频页面
-![视频](./screen/video.png)\
+<img src="./screen/video.png" width=380px>
 
 #### 搜索页面
-![搜索](./screen/search.png)
-![搜索列表](./screen/searchList.png)
-![历史记录](./screen/deleteHistory.png)
+<img src="./screen/search.png" width=380px>
+<img src="./screen/searchList.png" width=380px>
+<img src="./screen/deleteHistory.png" width=380px>
 
 #### 播放页面
-![音乐播放](./screen/play.png)
-![歌词](./screen/lyric.png)
+<img src="./screen/play.png" width=380px>
+<img src="./screen/lyric.png" width=380px>
+
+### 视频预览
+[预览链接](https://cxyxiaoyuyu.github.io/miniprogram-music/index.html)
