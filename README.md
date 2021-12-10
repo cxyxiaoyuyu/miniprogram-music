@@ -31,10 +31,10 @@
 ![每日推荐](./screen/recommend.png)
 
 #### 推荐歌曲
-![推荐歌曲](./screen/playList.png)
+![推荐歌曲](./screen/playlist.png)
 
 #### 视频页面
-![视频](./screen/video.png)
+![视频](./screen/video.png)\
 
 #### 搜索页面
 ![搜索](./screen/search.png)
