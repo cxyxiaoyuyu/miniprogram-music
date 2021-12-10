@@ -17,14 +17,30 @@
 
 ### 项目截图预览
 
-##### 初始页面
-##### 登录页面
-##### 个人中心页面
-##### 推荐歌曲页面
-##### 视频页面
-##### 热搜页面
-##### 搜索列表
-##### 历史搜索记录
-##### 歌曲详情页面
+#### 主页
+![主页](./screen/index.png)
+![排行榜](./screen/topList.png)
 
-### 视频预览
+#### 个人中心页面
+![个人中心](./screen/my.png)
+
+#### 登录页面
+![登录](./screen/login.png)
+
+#### 每日推荐
+![每日推荐](./screen/recommend.png)
+
+#### 推荐歌曲
+![推荐歌曲](./screen/playList.png)
+
+#### 视频页面
+![视频](./screen/video.png)
+
+#### 搜索页面
+![搜索](./screen/search.png)
+![搜索列表](./screen/searchList.png)
+![历史记录](./screen/deleteHistory.png)
+
+#### 播放页面
+![音乐播放](./screen/play.png)
+![歌词](./screen/lyric.png)
