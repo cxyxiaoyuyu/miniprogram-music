@@ -6,8 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    phone: '13501600459',
-    password: 'cxy12345'
+    phone: '',
+    password: ''
   },
   handleInput(event) {
     const type = event.currentTarget.id
